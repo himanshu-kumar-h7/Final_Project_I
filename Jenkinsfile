@@ -36,15 +36,6 @@ pipeline {
             }
         }
 
-	    /*
-        stage('Git Checkout') {
-            agent{ label 'slave'}
-            steps {
-                sh "if [ ! -d '/home/jenkins/jenkins_slave/workspace/Certification' ]; then git clone https://github.com/Anindya-G-Bosch/Final_Project_I.git /home/jenkins/jenkins_slave/workspace/Certification ; fi"
-                sh "cd /home/jenkins/jenkins_slave/workspace/Certification && sudo git checkout master"
-            }
-        }
-	*/
         
         stage('Docker Build and Run') {
             agent{ label 'slave'}
@@ -55,30 +46,5 @@ pipeline {
             }
         }
 
-		stage('Setting Prerequisite for Selenium') {
-            agent{ label 'slave'}
-            steps {
-                sh "wget -N -O 'firefox-57.0.tar.bz2' http://ftp.mozilla.org/pub/firefox/releases/57.0/linux-x86_64/en-US/firefox-57.0.tar.bz2"
-				sh "tar -xjf firefox-57.0.tar.bz2"
-				sh "rm -rf /opt/firefox"
-				sh "sudo mv firefox /opt/"
-				sh "sudo mv /usr/bin/firefox /usr/bin/firefox_old"
-				sh "sudo ln -s /opt/firefox/firefox /usr/bin/firefox"
-            }
-        }
-
-        stage('Check if selenium test run') {
-            agent{ label 'slave'}
-            steps {
-		sh "cd /home/jenkins/jenkins_slave/workspace/Certification/"
-		sh "java -jar certification-project-1.0-SNAPSHOT-jar-with-dependencies.jar --headless"
-            	}
-            post {
-                failure {
-                    sh "echo Failure"
-					sh "sudo docker rm -f webapp"
-                }
-			}
-		}
 	}
 }
