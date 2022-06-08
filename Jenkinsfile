@@ -36,6 +36,7 @@ pipeline {
             }
         }
 
+	    /*
         stage('Git Checkout') {
             agent{ label 'slave'}
             steps {
@@ -43,6 +44,7 @@ pipeline {
                 sh "cd /home/jenkins/jenkins_slave/workspace/Certification && sudo git checkout master"
             }
         }
+	*/
         
         stage('Docker Build and Run') {
             agent{ label 'slave'}
