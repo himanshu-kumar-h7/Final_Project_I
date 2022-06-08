@@ -1,2 +1,1 @@
-# Edureka DevOps WebApp
-Certification Project for Edureka DevOps
+Anindya_Certification_Project_DevOps
