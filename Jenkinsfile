@@ -12,7 +12,7 @@ pipeline {
                 sh "sudo apt update"
                 sh "sudo apt install -y puppet-agent"
             }
-        }
+        } 
 
         stage('configure and start puppet') {
             agent { label 'slave'}
