@@ -25,7 +25,7 @@ pipeline {
                 echo 'start puppet'
                 sh "sudo systemctl start puppet"
                 sh "sudo systemctl enable puppet"
-            } 
+            }  
         }
 
         stage('Install Docker on slave through puppet') {
